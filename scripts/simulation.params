@@ -1,0 +1,58 @@
+
+export RootDirectory=/home/nrstickley/Desktop/LSST
+
+# the directory containing the simulation software (the /src/ directory)
+SimulationSoftwareDirectory=$RootDirectory/src
+
+export PATH=$SimulationSoftwareDirectory/cpp:$SimulationSoftwareDirectory/scripts:$PATH
+
+# the specifications / features of the model grid 
+# (ID, RA, DEC, I-band magnitude, z, sed-type, reddening, redenning law, scale-factor)
+export ModelGridSpec="model_grid_spec.in"
+
+# name of the output model grid file for fitting:
+export ModelGrid="model_grid"
+
+# Filters are located in the directory, FilterDir:
+export FilterList="filters/filters.list"
+
+# list of galaxy and stellar SED template files, used for fitting
+export TemplateLibrary="templates/templates.list"
+
+# List of probabililites for the templates (based on the distribution of templates in the input catalog)
+export TemplateProbabilities="template_probabilities.dat"
+
+# Input Model file (a catalogue specifying positions, redshifts, 
+# and SED properties for input data)
+export InputModels="COSMOS.in"
+
+# Output photometry, before noise is added
+export OutputModels="raw_photometry.cat"
+
+export NoisyPhotometry="noisy_photometry.cat"
+
+# the raw output redshift data, containg full P(z) for each object
+export OutputRedshiftCatalog="redshifts.cat"
+
+# print output to standard error stream
+
+errlog() { 
+    printf "$@\n" 1>&2
+}
+
+### Variables below are only relevant if you are using StratOS ###
+
+if [ "$STRATOS_HOME" != "" ]; then
+
+    echo "Using StratOS"
+
+    # path to the mountpoint of the distributed file system
+    export DFS_DIR=/dfs
+
+    # The number of shards to use. This should be >= the number of nodes in the cluster that you
+    # wish to use in the computation
+    export StratOS_Shards=$(ansible slaves -a "echo slave_node" | grep "slave_node" | wc -l)
+
+    # the number of threads supported by each node (assumes the cluster is homogeneous)
+    export ThreadsPerNode=$(ssh node-0 "echo $(( $(lscpu -p=cpu | tail -n 1) + 1 ))")
+fi

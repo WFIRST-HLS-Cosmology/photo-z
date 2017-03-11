@@ -1,0 +1,20 @@
+#! /usr/bin/python
+
+from stratos import Processor
+import sys
+import os
+
+n_threads = int(os.environ['ThreadsPerNode'])
+
+j = Processor(threads_per_task=n_threads)  
+
+program = sys.argv[1]
+
+arguments = " ".join(sys.argv[2: -1])
+
+pattern = sys.argv[-1]
+
+sys.stderr.write("StratOS is preparing to launch the batch:\n" + program + " " + arguments + ", " + pattern + "\n")
+
+j.glob_batch(program + " " + arguments, pattern)
+

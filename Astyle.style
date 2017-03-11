@@ -1,0 +1,13 @@
+--style=allman
+--pad-oper
+--align-pointer=type
+--align-reference=type
+--break-blocks
+--pad-header
+--indent-cases
+--add-one-line-brackets
+--keep-one-line-blocks
+--keep-one-line-statements
+#--max-code-length=100
+--mode=c
+--suffix=.bak
