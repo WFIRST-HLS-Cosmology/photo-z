@@ -21,4 +21,5 @@ for line in sys.stdin:
     final_result = np.empty((output_flux.size + error.size,), dtype=error.dtype)
     final_result[0::2] = output_flux
     final_result[1::2] = error
-    print(" ".join([object_id, ra, dec]) + " " + " ".join(final_result.astype(str)))
+    print(" ".join([object_id, ra, dec]) + " " + " ".join([str(i) for i in final_result]))
+
