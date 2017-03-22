@@ -24,7 +24,7 @@ export TemplateProbabilities="template_probabilities_all.dat"
 
 # Input Model file (a catalogue specifying positions, redshifts, 
 # and SED properties for input data)
-export InputModels="COSMOS.in"
+export InputModels="COSMOS_all.in"
 
 # Output photometry, before noise is added
 export OutputModels="raw_photometry.cat"
