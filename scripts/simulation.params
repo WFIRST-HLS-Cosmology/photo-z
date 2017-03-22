@@ -1,5 +1,5 @@
 
-export RootDirectory=/home/nrstickley/Desktop/LSST
+export RootDirectory=/local/LSST-sim/
 
 # the directory containing the simulation software (the /src/ directory)
 SimulationSoftwareDirectory=$RootDirectory/src
@@ -8,7 +8,7 @@ export PATH=$SimulationSoftwareDirectory/cpp:$SimulationSoftwareDirectory/script
 
 # the specifications / features of the model grid 
 # (ID, RA, DEC, I-band magnitude, z, sed-type, reddening, redenning law, scale-factor)
-export ModelGridSpec="model_grid_spec.in"
+export ModelGridSpec="optimized_model_grid_spec_all.in"
 
 # name of the output model grid file for fitting:
 export ModelGrid="model_grid"
@@ -20,7 +20,7 @@ export FilterList="filters/filters.list"
 export TemplateLibrary="templates/templates.list"
 
 # List of probabililites for the templates (based on the distribution of templates in the input catalog)
-export TemplateProbabilities="template_probabilities.dat"
+export TemplateProbabilities="template_probabilities_all.dat"
 
 # Input Model file (a catalogue specifying positions, redshifts, 
 # and SED properties for input data)
@@ -33,6 +33,9 @@ export NoisyPhotometry="noisy_photometry.cat"
 
 # the raw output redshift data, containg full P(z) for each object
 export OutputRedshiftCatalog="redshifts.cat"
+
+# the final output catalog; the end-product of the simulation
+export FinalCatalog='simulation.cat'
 
 # print output to standard error stream
 
