@@ -18,6 +18,10 @@ cp $RootDirectory/input/* .
 cp -r $RootDirectory/filters/ .
 cp -r $RootDirectory/templates/ .
 
+mv $InputModels $InputModels.raw
+
+filter_by_column.py --column 4 --limit 24.5 < $InputModels.raw > $InputModels
+
 Commands=(MakeSimulatedPhotometry.sh \
           MakeModelGrid.sh \
           RunPhoto-z.sh )
