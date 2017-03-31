@@ -64,5 +64,10 @@ else
     make-grid $TemplateLibrary $FilterList $InputModels $OutputModels
 fi
 
-cat $OutputModels | add_noise_to_photometry.py 26.1 27.4 27.5 26.8 26.1 24.9 25.4 25.6 25.4 24.7 25.3 > $NoisyPhotometry
+hflux_limit=0.91201 # flux in mJy coorespinding to 24th magnitude
+
+# perform magnitude cut on h-band and add noise. 
+# The magnitudes fed to the are u g r i z y Y_wfirst J_wfirst H_wfirst F184_wfirst vis_euclid                                                 
+cat $OutputModels | filter_by_column.py --column 18 --limit $hflux_limit \
+| add_noise_to_photometry.py 26.1 27.4 27.5 26.8 26.1 24.9 25.4 25.6 25.4 24.7 25.3 > $NoisyPhotometry 
 
